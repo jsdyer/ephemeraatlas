@@ -68,7 +68,7 @@ No recurring schedule is enabled: the upstream is a fixed archived release. A ma
 ## Implementation and verification
 
 - `web/model.mjs`: validation, local search, date-overlap rules, chronology, safe source links and exports.
-- `web/app.mjs`: bounded gzip loading with SHA-256 verification, accessible controls, pagination, detail dialog and two-record comparison.
+- `web/app.mjs`: bounded gzip loading with SHA-256 verification and fetch/body timeouts (15 seconds for metadata, 30 seconds for the archive), accessible controls, pagination, detail dialog and two-record comparison.
 - `scripts/refresh.py`: standard-library CSV selection and atomic staged dataset creation; no dependencies or key.
 - `scripts/build.py`: offline static build, reporting hooks and metadata escaping.
 - Tests cover interval dates, undated records, blank fields, safe record links, duplicate IDs, expansion beyond original genres, selection bounds, malformed source rejection and capture integrity. Browser CI exercises search, no-result recovery, details, comparison, export and mobile layout at a project subpath.

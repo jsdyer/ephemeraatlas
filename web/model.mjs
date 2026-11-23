@@ -29,3 +29,11 @@ export function dateLabel(r){return r.dates.length?r.dates.join(' / '):r.start==
 export function receipt(r,data){return {schema:'coolcode.ephemera.receipt.v1',capturedAt:data.capturedAt,sourceEdition:data.sourceEdition,rights:data.rights,source:sourceUrl(r),record:Object.fromEntries(COLUMNS.map(k=>[k,r[k]])),collectionTitle:r.collectionTitle};}
 export function csv(records){const quote=x=>{let v=String(x??'');if(/^[=+@\t\r-]/.test(v))v="'"+v;return '"'+v.replaceAll('"','""')+'"';};const lines=[['Title','Recorded date','Earliest year','Latest year','Genres','Places (source metadata)','Collection','Source','Rights']];for(const r of records)lines.push([r.title,dateLabel(r),r.start,r.end,r.genres.join(' | '),r.places.join(' | '),r.collectionTitle,sourceUrl(r),'NYPL 2015 public-domain metadata release; check original rights']);return '\uFEFF'+lines.map(row=>row.map(quote).join(',')).join('\r\n');}
 export async function readBounded(stream,maxBytes){const reader=stream.getReader(),chunks=[];let size=0;try{for(;;){const {done,value}=await reader.read();if(done)break;size+=value.byteLength;if(size>maxBytes)throw Error('Collection exceeds its documented size limit.');chunks.push(value);}}finally{await reader.cancel().catch(()=>{});}const bytes=new Uint8Array(size);let offset=0;for(const chunk of chunks){bytes.set(chunk,offset);offset+=chunk.byteLength;}return bytes;}
+
+export async function fetchBounded(url,maxBytes,timeoutMs=30000,fetcher=globalThis.fetch){
+ const controller=new AbortController();
+ const timer=setTimeout(()=>controller.abort(),timeoutMs);
+ try{const response=await fetcher(url,{signal:controller.signal});if(!response.ok)throw Error(`Archive request returned HTTP ${response.status}.`);return await readBounded(response.body,maxBytes);}
+ catch(error){if(controller.signal.aborted)throw Error('The archive download timed out. Reload the page to try again.');throw error;}
+ finally{clearTimeout(timer);}
+}
