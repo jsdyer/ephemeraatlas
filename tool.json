@@ -1,16 +1,23 @@
 {
-  "id": "coolcode-tool-template",
-  "title": "CoolCode Tool Starter",
-  "description": "A browser-only example that trims lines and removes exact duplicates.",
-  "category": "security",
-  "tags": ["text", "lines", "duplicates"],
-  "icon": "scan-search",
-  "url": "/coolcode-tool-template/",
-  "source": "https://github.com/jsdyer/coolcode-tool-template",
+  "id": "ephemeraatlas",
+  "title": "Ephemera Atlas",
+  "description": "Search historical menus, postcards and pamphlets by date, place and subject, then inspect original scans.",
+  "category": "media",
+  "tags": [
+    "archives",
+    "menus",
+    "postcards",
+    "pamphlets",
+    "NYPL",
+    "ephemera"
+  ],
+  "icon": "library-big",
+  "url": "/ephemeraatlas/",
+  "source": "https://github.com/jsdyer/ephemeraatlas",
   "hosting": "project",
   "access": "browser",
   "data_info": {
-    "mode": "local",
-    "detail": "The browser reads the text you paste and compares its lines."
+    "mode": "snapshot",
+    "detail": "Selected NYPL public-domain metadata from its 30 December 2015 archive; searched locally."
   }
 }

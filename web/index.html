@@ -1,34 +1,15 @@
 <!doctype html>
-<html lang="en-CA">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="{{DESCRIPTION}}">
-  <title>{{TITLE}} · CoolCode</title>
-  <link rel="stylesheet" href="./style.css">
-  <script type="module" src="./app.mjs"></script>
-  {{VISIT_COUNTER}}
-</head>
-<body data-tool-id="{{TOOL_ID}}">
-  <a class="skip" href="#main">Skip to content</a>
-  <header><a href="https://coolcode.ca/">← CoolCode.ca</a><a href="{{SOURCE_URL}}">Source &amp; instructions ↗</a></header>
-  <main id="main">
-    <p class="eyebrow">Browser tool starter</p>
-    <h1>{{TITLE}}</h1>
-    <p class="intro">{{DESCRIPTION}}</p>
-    <section aria-labelledby="example-title">
-      <h2 id="example-title">Clean a list</h2>
-      <p>Trim spaces, skip blank lines and remove exact duplicates. Capitalization stays distinct.</p>
-      <div class="panels">
-        <div><label for="input">Your lines</label><textarea id="input" rows="10" maxlength="100000" spellcheck="false" placeholder="Paste one item per line"></textarea></div>
-        <div><label for="output">Cleaned lines</label><textarea id="output" rows="10" readonly spellcheck="false"></textarea></div>
-      </div>
-      <div class="actions"><button id="sample" type="button">Load example</button><button id="clear" type="button">Clear</button><button id="copy" type="button" hidden>Copy result</button></div>
-      <p id="status" role="status" aria-live="polite">Paste a list to begin.</p>
-      <noscript><p>This tool needs JavaScript to process your text. The source is available above.</p></noscript>
-    </section>
-    <aside aria-label="Privacy"><strong>Stays on your device.</strong> The browser processes your text in this tab. Reloading clears it.</aside>
-  </main>
-  <footer>Part of <a href="https://coolcode.ca/">the CoolCode collection</a>. {{ISSUE_LINK}}</footer>
-</body>
-</html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{{TITLE}} · CoolCode</title><meta name="description" content="{{DESCRIPTION}}"><link rel="canonical" href="https://coolcode.ca/{{TOOL_ID}}/"><link rel="stylesheet" href="./style.css">{{VISIT_COUNTER}}<script type="module" src="./app.mjs"></script></head>
+<body><a class="skip" href="#explore">Skip to collection</a><header><a href="https://coolcode.ca/" class="brand">CoolCode<span> / paper & memory</span></a><a href="#method">Sources & method</a></header>
+<main><section class="hero"><div class="hero-copy"><p class="eyebrow">The things we weren’t meant to keep</p><h1>Ephemera<br><em>Atlas.</em></h1><p class="intro">A breakfast menu. A holiday greeting. A pocket-sized publication.<br>Follow the small paper trails of everyday life.</p><a class="primary inline" href="#explore">Browse the collection</a></div><div class="paper-scene" aria-hidden="true"><div class="paper postcard"><span>POST CARD</span><div class="postcard-lines"></div><small>A place.<br>A moment.<br>A trace.</small></div><div class="paper menu"><span>From the archive</span><strong>MENU</strong><i>Breakfast<br>Dinner<br>Memories</i><b>THE EVERYDAY,<br>PRESERVED.</b></div><div class="paper ticket"><span>EPHEMERA ATLAS</span><strong>KEEP<br>THIS</strong><small>From The New York Public Library</small></div></div></section>
+<section class="edition-bar" aria-label="Collection coverage"><div><strong id="total">…</strong><span>archival items</span></div><div><strong id="collections-count">…</strong><span>named collections</span></div><div><strong>30 Dec 2015</strong><span>source metadata snapshot</span></div><div><strong id="retrieved">Loading</strong><span>downloaded for this edition</span></div></section>
+<section id="explore" class="workspace"><div class="section-heading"><div><p class="eyebrow">Find something worth keeping</p><h2>Open the drawers.</h2></div><button id="export" class="secondary" disabled>Save results CSV</button></div><p id="status" role="status">Loading the archived collection…</p>
+<form id="filters" class="filters"><label class="search-label">Search the collection<input type="search" id="query" placeholder="Railroad, Canada, Christmas, tobacco…" autocomplete="off"></label><label>Kind of paper<select id="genre"><option value="">All kinds</option></select></label><label>Collection<select id="collection"><option value="">All collections</option></select></label><label>Recorded place<input type="search" id="place" placeholder="A place in the metadata"></label><label>From year<input type="number" id="from" placeholder="Any" min="1000" max="2999"></label><label>Through year<input type="number" id="to" placeholder="Any" min="1000" max="2999"></label><label>Order<select id="sort"><option value="oldest">Oldest first</option><option value="newest">Newest first</option><option value="title">Title A–Z</option></select></label><div class="filter-checks"><label class="check"><input type="checkbox" id="undated" checked> Include undated</label><label class="check"><input type="checkbox" id="images"> Load NYPL scan previews</label></div><button type="button" id="reset" class="text-button">Clear filters</button></form><div id="presets" class="presets" aria-label="Starting searches"></div>
+<div class="timeline-wrap"><div><h3>Paper through time</h3><p>Matching records by their earliest recorded year.<br>Collection coverage, not production or popularity.</p></div><div id="timeline" class="timeline" aria-label="Record counts by time period"></div></div>
+<div class="results-heading"><p id="count">Preparing the index</p><p>Open any record to inspect its source</p></div><div id="cards" class="cards"></div><div id="empty" class="empty" hidden><h3>No records in this drawer.</h3><p>Try a broader word or clear the place and year filters. Place metadata is often missing; search the main box to include words in titles.</p><button id="empty-reset" class="secondary">Clear filters</button></div><nav class="pagination" aria-label="Results pages"><button id="prev" class="secondary" disabled>Previous</button><span id="page-label"></span><button id="next" class="secondary" disabled>Next</button></nav>
+<section id="compare" class="compare" hidden><div class="section-heading"><div><p class="eyebrow">Side by side</p><h2>Two paper trails.</h2></div><button class="text-button" id="clear-compare">Clear comparison</button></div><div id="comparison"></div></section>
+</section>
+<section id="method" class="method"><div><p class="eyebrow">Sources & method</p><h2>An archive,<br><em>with its gaps.</em></h2><p>From The New York Public Library. This edition selects menus, postcards, pamphlets and cigarette cards from NYPL’s public-domain metadata release. It does not include every digitized item or a live search of today’s catalogue.</p></div><div class="method-copy"><h3>Dates belong to different things</h3><p>The source describes the collection as it stood on <strong>30 December 2015</strong>. The download date tells you when CoolCode retrieved that archive. A record’s date describes the original item and may be approximate or span several years. Date filters use overlapping recorded ranges; the chart uses the earliest year.</p><h3>Places are recorded, not inferred</h3><p>Place search includes geographic subjects and publication places. Many menus have no structured place metadata. The main search also looks inside titles, notes and subjects. No coordinates or locations are invented.</p><h3>Rights and original scans</h3><p>NYPL identified these items as having no known U.S. copyright restrictions in this release; its metadata is CC0. Each record links to the original for current details. Scan previews are optional, requested from NYPL, and may be unavailable. The decorative paper at the top is an illustration, not a scanned historical object.</p><h3>Local search, public evidence</h3><p>Your searches and comparison choices stay in this tab. Loading previews or opening source links contacts NYPL. Saving a record downloads its metadata, not the original image. No account or key is required.</p><ul><li><a href="https://github.com/NYPL-publicdomain/data-and-utilities">Official NYPL data, schema and rights</a></li><li><a href="https://api.repo.nypl.org/">NYPL notice about its retired API</a></li><li><a href="./data/status.json">This edition’s provenance and file hashes</a></li><li><a href="./data/catalogue.json.gz" download>Download selected metadata (.json.gz)</a></li></ul><p class="source-note">The original API has retired. This tool uses NYPL’s downloadable archive, so its search remains usable without that service. Refreshes are manual because the source is a fixed historical release.</p></div></section>
+<section class="related"><span>Continue exploring</span><a href="https://coolcode.ca/arttimeline/">Art Timeline</a><a href="https://coolcode.ca/headlinevault/">Headline Vault</a><a href="https://coolcode.ca/bookgraveyard/">Book Graveyard</a></section></main>
+<footer><a href="https://coolcode.ca/">CoolCode.ca</a><span>Ephemera Atlas · From The New York Public Library</span><a href="{{SOURCE_URL}}">Source & guide</a>{{ISSUE_LINK}}</footer>
+<dialog id="detail"><div class="dialog-head"><span class="eyebrow">The original record</span><button id="close-detail" class="secondary">Close</button></div><div id="detail-body"></div></dialog></body></html>

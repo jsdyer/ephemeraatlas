@@ -1,0 +1,15 @@
+{
+  "sourceCommit": "cb1332fcdc58b7a06917d013de63a4b915629530",
+  "sourceEdition": "2015-12-30",
+  "sourceFiles": ["pd_items_1.csv", "pd_items_2.csv"],
+  "genres": ["Menus", "Postcards", "Pamphlets", "Cigarette cards"],
+  "collectionIds": [],
+  "maxRecords": 100000,
+  "pageSize": 12,
+  "presets": [
+    {"label": "Railway dining", "query": "railroad", "genre": "Menus"},
+    {"label": "Canadian traces", "query": "canada", "genre": ""},
+    {"label": "Holiday postcards", "query": "christmas", "genre": "Postcards"},
+    {"label": "Small publications", "query": "", "genre": "Pamphlets"}
+  ]
+}

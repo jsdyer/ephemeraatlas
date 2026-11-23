@@ -1,27 +1,40 @@
-name: Browser tool · Check and publish
+name: Ephemera Atlas · Check and publish
 on:
   pull_request:
   push:
     branches: [main]
   workflow_dispatch:
+    inputs:
+      refresh:
+        description: Rebuild the selected NYPL archive
+        type: boolean
+        default: true
 permissions:
   contents: read
+concurrency:
+  group: ephemeraatlas-${{ github.ref }}
+  cancel-in-progress: false
 jobs:
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    permissions:
+      contents: write
     outputs:
       publish: ${{ steps.identity.outputs.publish }}
     steps:
       - uses: actions/checkout@v6
         with:
-          persist-credentials: false
+          persist-credentials: ${{ github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && inputs.refresh }}
       - uses: actions/setup-python@v6
         with:
           python-version: '3.12'
       - uses: actions/setup-node@v6
         with:
           node-version: '24'
+      - name: Rebuild selected metadata from the pinned archive
+        if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && inputs.refresh
+        run: python3 scripts/refresh.py
       - name: Test the application
         run: node --test tests/*.test.mjs
       - name: Test the builder
@@ -46,6 +59,16 @@ jobs:
           python3 -m playwright install --with-deps chromium
       - name: Check application in a browser
         run: python3 tests/browser_smoke.py
+      - name: Retain the checked metadata edition
+        if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && inputs.refresh && steps.identity.outputs.publish == 'true'
+        run: |
+          git add web/data/
+          if ! git diff --cached --quiet; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git commit -m 'Retain selected NYPL metadata edition'
+            git push origin HEAD:main
+          fi
       - name: Save browser screenshots
         if: always()
         uses: actions/upload-artifact@v4

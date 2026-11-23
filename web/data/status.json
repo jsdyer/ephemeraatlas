@@ -1,0 +1,33 @@
+{
+  "schema": "coolcode.ephemera.status.v1",
+  "capturedAt": "2026-11-23T10:59:41Z",
+  "sourceEdition": "2015-12-30",
+  "sourceCommit": "cb1332fcdc58b7a06917d013de63a4b915629530",
+  "recordCount": 24859,
+  "collectionCount": 22,
+  "sourceRows": 190494,
+  "selectedGenres": [
+    "Menus",
+    "Postcards",
+    "Pamphlets",
+    "Cigarette cards"
+  ],
+  "selectedCollections": [],
+  "file": "catalogue.json.gz",
+  "expandedBytes": 7210752,
+  "compressedBytes": 1058631,
+  "sha256": "2f7010ace111f81828c2c3845f4346ce6934084fbb1d0455878a50584f0f6bc9",
+  "sources": [
+    {
+      "url": "https://raw.githubusercontent.com/NYPL-publicdomain/data-and-utilities/cb1332fcdc58b7a06917d013de63a4b915629530/items/pd_items_1.csv",
+      "sha256": "7b58984d467cc760eb5a772d6c3c89e431aee9b990a298f948b348151ccc074a",
+      "bytes": 75643444
+    },
+    {
+      "url": "https://raw.githubusercontent.com/NYPL-publicdomain/data-and-utilities/cb1332fcdc58b7a06917d013de63a4b915629530/items/pd_items_2.csv",
+      "sha256": "fc222e027322c66c50b83058a1930257b56821bc290ac4e3f8e0c469db08c9da",
+      "bytes": 71470967
+    }
+  ],
+  "rights": "NYPL public-domain release: no known U.S. copyright restrictions; metadata CC0 1.0. Check the original record for current rights information."
+}
